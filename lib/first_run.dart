@@ -6,6 +6,7 @@ import 'misc/resources.dart';
 
 class LandingPage extends StatelessWidget {
   const LandingPage({super.key});
+
   Future<bool> _checkFirstRun() => IsFirstRun.isFirstRun();
 
   Future<String> _getInitialRoute() async {

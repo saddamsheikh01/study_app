@@ -4,7 +4,6 @@ import 'package:url_launcher/url_launcher.dart';
 
 import '../auth.dart';
 
-
 final Uri _url = Uri.parse('https://studyswap.it/terms');
 
 class RegisterPage extends StatefulWidget {
@@ -16,7 +15,7 @@ class RegisterPage extends StatefulWidget {
 
 class _RegisterPageState extends State<RegisterPage> {
   bool agreeTerms = false;
-  final auth = Auth();// Creates Auth object
+  final auth = Auth(); // Creates Auth object
   final email = TextEditingController();
   final password = TextEditingController();
   final confirmPassword = TextEditingController();
@@ -114,74 +113,89 @@ class _RegisterPageState extends State<RegisterPage> {
                         width: double.infinity,
                         height: 56,
                         child: ElevatedButton(
-                          onPressed: agreeTerms ? () async {
-  			  final emailT = email.text.trim();
-  			  final passwordT= password.text.trim();
-  			  final confirmPasswordT = confirmPassword.text.trim();
+                          onPressed: agreeTerms
+                              ? () async {
+                                  final emailT = email.text.trim();
+                                  final passwordT = password.text.trim();
+                                  final confirmPasswordT =
+                                      confirmPassword.text.trim();
 
-  			  if (emailT.endsWith('.edu.it')) {
-    				showDialog(
-      				context: context,
-      				builder: (context) => AlertDialog(
-        			title: const Text("Invalid email"),
-        			content: const Text("You can register only with an institutional email"),
-        				actions: [
-          				TextButton(
-            				onPressed: () => Navigator.pop(context),
-            				child: const Text("OK"),
-          				)
-        				],
-     					 ),
-    					);
-    					return;
-  					}
+                                  if (emailT.endsWith('.edu.it')) {
+                                    showDialog(
+                                      context: context,
+                                      builder: (context) => AlertDialog(
+                                        title: const Text("Invalid email"),
+                                        content: const Text(
+                                            "You can register only with an institutional email"),
+                                        actions: [
+                                          TextButton(
+                                            onPressed: () =>
+                                                Navigator.pop(context),
+                                            child: const Text("OK"),
+                                          )
+                                        ],
+                                      ),
+                                    );
+                                    return;
+                                  }
 
-  			if (passwordT != confirmPasswordT) {
-    				showDialog(
-      				context: context,
-     				builder: (context) => AlertDialog(
-        			title: const Text("Error"),
-        			content: const Text("Incorrect password"),
-        			actions: [
-         		 	TextButton(
-            			onPressed: () => Navigator.pop(context),
-            			child: const Text("OK"),
-          			)
-        			],
-      				),
-    				);
-    				return;
-  				}
+                                  if (passwordT != confirmPasswordT) {
+                                    showDialog(
+                                      context: context,
+                                      builder: (context) => AlertDialog(
+                                        title: const Text("Error"),
+                                        content:
+                                            const Text("Incorrect password"),
+                                        actions: [
+                                          TextButton(
+                                            onPressed: () =>
+                                                Navigator.pop(context),
+                                            child: const Text("OK"),
+                                          )
+                                        ],
+                                      ),
+                                    );
+                                    return;
+                                  }
 
-	  			
-	  			final error = await auth.registerWithEmail(emailT, passwordT); // Calls method created in auth.dart
-  				if (error != null) {
-    					showDialog(
-      					context: context,
-      					builder: (context) => AlertDialog(
-        				title: const Text("Error"),
-        				content: Text(error),
-        				actions: [
-          				TextButton(
-            				onPressed: () => Navigator.pop(context),
-            				child: const Text("OK"),
-          				)
-        				],
-      					),
-   				 	);
-    					return;
-  					}else{
-              showDialog(context: context,
-               builder: (context)=> AlertDialog(
-                title: const Text("Registration Successful"),
-                content: Text("A verification email has been sent to your address. Check your inbox and confirm your email before loggin in."),
-                actions: [
-                  TextButton(onPressed: ()=> Navigator.pushReplacementNamed(context, '/login'), child: const Text("OK"))
-                ],
-               )
-               );
-            }
-				} : null,
+                                  final error = await auth.registerWithEmail(
+                                      emailT,
+                                      passwordT); // Calls method created in auth.dart
+                                  if (error != null) {
+                                    showDialog(
+                                      context: context,
+                                      builder: (context) => AlertDialog(
+                                        title: const Text("Error"),
+                                        content: Text(error),
+                                        actions: [
+                                          TextButton(
+                                            onPressed: () =>
+                                                Navigator.pop(context),
+                                            child: const Text("OK"),
+                                          )
+                                        ],
+                                      ),
+                                    );
+                                    return;
+                                  } else {
+                                    showDialog(
+                                        context: context,
+                                        builder: (context) => AlertDialog(
+                                              title: const Text(
+                                                  "Registration Successful"),
+                                              content: Text(
+                                                  "A verification email has been sent to your address. Check your inbox and confirm your email before loggin in."),
+                                              actions: [
+                                                TextButton(
+                                                    onPressed: () => Navigator
+                                                        .pushReplacementNamed(
+                                                            context, '/login'),
+                                                    child: const Text("OK"))
+                                              ],
+                                            ));
+                                  }
+                                }
+                              : null,
                           style: ElevatedButton.styleFrom(
                             backgroundColor: theme.colorScheme.primary,
                             foregroundColor: theme.colorScheme.onPrimary,
@@ -225,5 +239,4 @@ class _RegisterPageState extends State<RegisterPage> {
       throw Exception('Could not launch $_url');
     }
   }
-
 }

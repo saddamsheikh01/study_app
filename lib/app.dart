@@ -31,11 +31,13 @@ class MyApp extends StatelessWidget {
       routes: {
         '/onboarding': (context) => const OnboardingPage(),
         '/password-recovery': (context) => const PassRecovery(),
-        '/homescreen': (context) => const MyHomePage(title: "StudySwap"),
+        '/homescreen': (context) => const MyHomePage(title: "Study"),
         '/notifications': (context) => const NotificationsPage(),
         '/login': (context) => const LoginPage(),
         '/register': (context) => const RegisterPage(),
-        '/profile': (context) => const ProfilePage(hasAppBar: true,),
+        '/profile': (context) => const ProfilePage(
+              hasAppBar: true,
+            ),
         '/edit-profile': (context) => const EditProfile(),
       },
       home: LandingPage(),

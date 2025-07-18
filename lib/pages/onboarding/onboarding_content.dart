@@ -7,7 +7,11 @@ class OnboardingContent extends StatelessWidget {
   final ValueNotifier<double> notifier;
   final int page;
 
-  const OnboardingContent({super.key, required this.onboarding, required this.notifier, this.page = 0});
+  const OnboardingContent(
+      {super.key,
+      required this.onboarding,
+      required this.notifier,
+      this.page = 0});
 
   @override
   Widget build(BuildContext context) {
@@ -22,25 +26,23 @@ class OnboardingContent extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Image.asset(onboarding.image, width: 256,),
+            Image.asset(
+              onboarding.image,
+              width: 256,
+            ),
             Padding(
               padding: const EdgeInsets.only(top: 32, bottom: 16),
               child: Text(
                 onboarding.title,
                 textAlign: TextAlign.center,
-                style: TextStyle(
-                  fontSize: 32,
-                  fontWeight: FontWeight.w500
-                ),
+                style: TextStyle(fontSize: 32, fontWeight: FontWeight.w500),
               ),
             ),
             Text(
               onboarding.caption,
               textAlign: TextAlign.center,
-              style: TextStyle(
-                fontSize: 18,
-                color: theme.colorScheme.secondary
-              ),
+              style:
+                  TextStyle(fontSize: 18, color: theme.colorScheme.secondary),
             )
           ],
         ),

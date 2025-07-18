@@ -5,7 +5,6 @@ import '../../misc/resources.dart';
 import 'onboarding.dart';
 import 'onboarding_content.dart';
 
-
 class OnboardingPage extends StatefulWidget {
   const OnboardingPage({super.key});
 
@@ -66,11 +65,10 @@ class _OnboardingPageState extends State<OnboardingPage> {
                   .asMap()
                   .entries
                   .map((entry) => OnboardingContent(
-                    onboarding: entry.value,
-                    notifier: _notifier,
-                    page: entry.key,
-                  )
-              )
+                        onboarding: entry.value,
+                        notifier: _notifier,
+                        page: entry.key,
+                      ))
                   .toList(growable: false),
             ),
           ),
@@ -80,47 +78,64 @@ class _OnboardingPageState extends State<OnboardingPage> {
               child: Stack(
                 children: [
                   Align(
-                    alignment: Alignment.bottomLeft,
-                      child: ValueListenableBuilder(valueListenable: _notifier, builder: (context, page, _) {
-                        if (page.toInt() == _contents.length - 1) return const SizedBox.shrink();
+                      alignment: Alignment.bottomLeft,
+                      child: ValueListenableBuilder(
+                          valueListenable: _notifier,
+                          builder: (context, page, _) {
+                            if (page.toInt() == _contents.length - 1)
+                              return const SizedBox.shrink();
 
-                        return TextButton(onPressed: () {
-                          _pageController.animateToPage(_contents.length - 1, duration: const Duration(milliseconds: 250), curve: Curves.easeIn);
-                        }, child: Text("Skip"));
-                      })
-                  ) ,
+                            return TextButton(
+                                onPressed: () {
+                                  _pageController.animateToPage(
+                                      _contents.length - 1,
+                                      duration:
+                                          const Duration(milliseconds: 250),
+                                      curve: Curves.easeIn);
+                                },
+                                child: Text("Skip"));
+                          })),
                   Align(
                     alignment: Alignment.center,
                     child: SlidingIndicator(
-                        notifier: _notifier,
-                        activeIndicatorSize: 14.0,
-                        inactiveIndicatorSize: 14.0,
-                        margin: 4.0,
-                        activeIndicator: Icon(
-                          Icons.circle,
-                          color: theme.colorScheme.secondary,
-                        ),
-                        inActiveIndicator: Icon(
-                          Icons.circle_outlined,
-                          color: theme.colorScheme.secondary,
-                        ),
-                        indicatorCount: _contents.length,
+                      notifier: _notifier,
+                      activeIndicatorSize: 14.0,
+                      inactiveIndicatorSize: 14.0,
+                      margin: 4.0,
+                      activeIndicator: Icon(
+                        Icons.circle,
+                        color: theme.colorScheme.secondary,
+                      ),
+                      inActiveIndicator: Icon(
+                        Icons.circle_outlined,
+                        color: theme.colorScheme.secondary,
+                      ),
+                      indicatorCount: _contents.length,
                     ),
                   ),
                   Align(
                       alignment: Alignment.bottomRight,
-                      child: ValueListenableBuilder(valueListenable: _notifier, builder: (context, page, _) {
-                        if (page.toInt() == _contents.length - 1) {
-                          return FilledButton(onPressed: () {
-                          _navigateToSignIn(context);
-                        }, child: const Text("Start"));
-                        }
+                      child: ValueListenableBuilder(
+                          valueListenable: _notifier,
+                          builder: (context, page, _) {
+                            if (page.toInt() == _contents.length - 1) {
+                              return FilledButton(
+                                  onPressed: () {
+                                    _navigateToSignIn(context);
+                                  },
+                                  child: const Text("Start"));
+                            }
 
-                        return FilledButton(onPressed: () {
-                          _pageController.animateToPage(page.toInt() + 1, duration: const Duration(milliseconds: 250), curve: Curves.easeIn);
-                        }, child: Text("Next"));
-                      })
-                  )
+                            return FilledButton(
+                                onPressed: () {
+                                  _pageController.animateToPage(
+                                      page.toInt() + 1,
+                                      duration:
+                                          const Duration(milliseconds: 250),
+                                      curve: Curves.easeIn);
+                                },
+                                child: Text("Next"));
+                          }))
                 ],
               ),
             ),

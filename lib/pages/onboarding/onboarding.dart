@@ -4,5 +4,4 @@ class Onboarding {
   final String image;
 
   const Onboarding(this.title, this.caption, this.image);
-
 }

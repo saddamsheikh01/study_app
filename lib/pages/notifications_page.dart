@@ -19,7 +19,7 @@ class NotificationsPage extends StatelessWidget {
         "isUnread": true,
       },
       {
-        "title": "Welcome to StudySwap",
+        "title": "Welcome to Study",
         "subtitle": "Start browsing for content you need",
         "date": "April 15",
         "isUnread": false,
@@ -42,7 +42,8 @@ class NotificationsPage extends StatelessWidget {
       body: ListView.separated(
         padding: const EdgeInsets.only(top: 24),
         itemCount: notifications.length,
-        separatorBuilder: (context, index) => Divider(height: 0, color: Colors.blue[50]),
+        separatorBuilder: (context, index) =>
+            Divider(height: 0, color: Colors.blue[50]),
         itemBuilder: (context, index) {
           final notif = notifications[index];
           return NotificationTile(

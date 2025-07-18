@@ -37,12 +37,13 @@ class Notes extends StatelessWidget {
                     onTap: () {},
                     child: post,
                   ),
-                  if (i != posts.length - 1) const SizedBox(width: 16)
-                  else const SizedBox(width: 24),
+                  if (i != posts.length - 1)
+                    const SizedBox(width: 16)
+                  else
+                    const SizedBox(width: 24),
                 ];
               }).toList(),
-            )
-        ),
+            )),
       ],
     );
   }

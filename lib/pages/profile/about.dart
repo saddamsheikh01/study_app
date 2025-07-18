@@ -1,10 +1,12 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/material.dart'; 
+import 'package:flutter/material.dart';
 
 class About extends StatefulWidget {
   final Map<String, dynamic> userData;
+
   const About({super.key, required this.userData});
+
   @override
   State<About> createState() => _AboutState();
 }
@@ -43,9 +45,12 @@ class _AboutState extends State<About> {
             );
           }
 
-          final username = data['username'] ?? widget.userData['username'] ?? 'Unknown';
-          final about = data['aboutme'] ?? widget.userData['aboutme'] ?? 'No about info';
-          final school = data['school'] ?? widget.userData['school'] ?? 'No about info';
+          final username =
+              data['username'] ?? widget.userData['username'] ?? 'Unknown';
+          final about =
+              data['aboutme'] ?? widget.userData['aboutme'] ?? 'No about info';
+          final school =
+              data['school'] ?? widget.userData['school'] ?? 'No about info';
 
           return Scaffold(
             appBar: AppBar(),

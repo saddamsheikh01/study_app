@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../auth.dart';
+
 class LoginPage extends StatelessWidget {
   const LoginPage({super.key});
 
@@ -8,8 +9,8 @@ class LoginPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final auth = Auth(); // Creates Auth Object
-    final email=TextEditingController();
-    final password=TextEditingController();
+    final email = TextEditingController();
+    final password = TextEditingController();
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body: SafeArea(
@@ -33,7 +34,7 @@ class LoginPage extends StatelessWidget {
                       ),
                       const SizedBox(height: 104),
                       TextField(
-                      	controller: email,
+                        controller: email,
                         decoration: InputDecoration(
                           border: OutlineInputBorder(),
                           hintText: 'Insert email',
@@ -66,39 +67,43 @@ class LoginPage extends StatelessWidget {
                         width: double.infinity,
                         height: 56,
                         child: ElevatedButton(
-                          onPressed: () async{
-                            final emailT=email.text.trim();
-                            final passwordT=password.text.trim();
-                            if(emailT.isNotEmpty && passwordT.isNotEmpty){
-                              final error= await auth.login(emailT, passwordT);
-                              if(error != null){
+                          onPressed: () async {
+                            final emailT = email.text.trim();
+                            final passwordT = password.text.trim();
+                            if (emailT.isNotEmpty && passwordT.isNotEmpty) {
+                              final error = await auth.login(emailT, passwordT);
+                              if (error != null) {
+                                showDialog(
+                                  context: context,
+                                  builder: (context) => AlertDialog(
+                                    title: const Text("Error"),
+                                    content: Text(error),
+                                    actions: [
+                                      TextButton(
+                                          onPressed: () =>
+                                              Navigator.pop(context),
+                                          child: const Text("OK")),
+                                    ],
+                                  ),
+                                );
+                              } else {
+                                Navigator.pushReplacementNamed(
+                                    context, '/homescreen');
+                              }
+                            } else {
                               showDialog(
                                 context: context,
-                                builder: (context)=> 
-                                AlertDialog(
-                                  title: const Text("Error"),
-                                  content: Text(error),
-                                  actions: [
-                                    TextButton(onPressed: () => Navigator.pop(context), 
-                                    child: const Text("OK")),
-                                  ],
-                                ),
-                                );
-                            }else{
-                              Navigator.pushReplacementNamed(context, '/homescreen');
-                            }
-                            }else{
-                              showDialog(
-                                context: context, 
                                 builder: (context) => AlertDialog(
                                   title: const Text("Error"),
-                                  content: Text("Enter a valid email o password before continuing"),
+                                  content: Text(
+                                      "Enter a valid email o password before continuing"),
                                   actions: [
-                                    TextButton(onPressed: ()=> Navigator.pop(context), 
-                                    child: const Text("OK")),
+                                    TextButton(
+                                        onPressed: () => Navigator.pop(context),
+                                        child: const Text("OK")),
                                   ],
                                 ),
-                                );
+                              );
                             }
                           },
                           style: ElevatedButton.styleFrom(
@@ -107,7 +112,7 @@ class LoginPage extends StatelessWidget {
                             textStyle: theme.textTheme.titleMedium?.copyWith(
                               fontWeight: FontWeight.bold,
                             ),
-                           shape: RoundedRectangleBorder(
+                            shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(8),
                             ),
                           ),

@@ -24,11 +24,14 @@ class _MyHomePageState extends State<MyHomePage> {
       _selectedIndex = index;
     });
   }
+
   static const List<Widget> _pages = <Widget>[
     HomePageContent(),
     SearchPage(),
     ExchangePage(),
-    ProfilePage(hasAppBar: false,),
+    ProfilePage(
+      hasAppBar: false,
+    ),
   ];
 
   @override
@@ -38,10 +41,10 @@ class _MyHomePageState extends State<MyHomePage> {
       body: _pages[_selectedIndex],
       floatingActionButton: _selectedIndex == 0
           ? FloatingActionButton(
-        onPressed: () {},
-        tooltip: 'Upload something',
-        child: const Icon(Icons.add_circle_outlined),
-      )
+              onPressed: () {},
+              tooltip: 'Upload something',
+              child: const Icon(Icons.add_circle_outlined),
+            )
           : null,
       bottomNavigationBar: BottomNavBar(
         selectedIndex: _selectedIndex,

@@ -31,23 +31,24 @@ class HomePageContent extends StatelessWidget {
             ),
             const SizedBox(height: 8),
             SizedBox(
-              height: 244,
-              child: ListView(
-                scrollDirection: Axis.horizontal,
-                children: posts.asMap().entries.expand((entry) {
-                  int i = entry.key;
-                  Post post = entry.value;
-                  return [
-                    InkWell(
-                      onTap: () {},
-                      child: post,
-                    ),
-                    if (i != posts.length - 1) const SizedBox(width: 16)
-                    else const SizedBox(width: 24),
-                  ];
-                }).toList(),
-              )
-            ),
+                height: 244,
+                child: ListView(
+                  scrollDirection: Axis.horizontal,
+                  children: posts.asMap().entries.expand((entry) {
+                    int i = entry.key;
+                    Post post = entry.value;
+                    return [
+                      InkWell(
+                        onTap: () {},
+                        child: post,
+                      ),
+                      if (i != posts.length - 1)
+                        const SizedBox(width: 16)
+                      else
+                        const SizedBox(width: 24),
+                    ];
+                  }).toList(),
+                )),
             const SizedBox(height: 24),
             const Text(
               "Latest notes",
@@ -68,12 +69,13 @@ class HomePageContent extends StatelessWidget {
                         onTap: () {},
                         child: post,
                       ),
-                      if (i != posts.length - 1) const SizedBox(width: 16)
-                      else const SizedBox(width: 24),
+                      if (i != posts.length - 1)
+                        const SizedBox(width: 16)
+                      else
+                        const SizedBox(width: 24),
                     ];
                   }).toList(),
-                )
-            ),
+                )),
             const SizedBox(height: 16),
           ],
         ),

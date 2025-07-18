@@ -3,6 +3,7 @@ import '../../widgets/reviews_panel.dart';
 
 class Reviews extends StatefulWidget {
   final double stars;
+
   const Reviews({super.key, required this.stars});
 
   @override

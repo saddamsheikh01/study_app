@@ -16,13 +16,10 @@ class Auth {
       );
 
       // Update collection "Users" to add new entry
-      await db
-          .collection("Users")
-          .doc(userCredential.user!.email)
-          .set({
+      await db.collection("Users").doc(userCredential.user!.email).set({
         'username': email.split('@')[0],
         'school': email.split('@')[1],
-        'aboutme' : "Hey there!",
+        'aboutme': "Hey there!",
         'stars': 0.0,
         'coins': 20,
         'color': (math.Random().nextDouble() * 0xFFFFFF).toInt(),
@@ -39,10 +36,11 @@ class Auth {
   Future<String?> login(String email, String password) async {
     try {
       // Call to check if the account exists
-      UserCredential userCredential = await auth.signInWithEmailAndPassword(email: email, password: password);
+      UserCredential userCredential = await auth.signInWithEmailAndPassword(
+          email: email, password: password);
       await userCredential.user?.reload();
       final currentUser = auth.currentUser;
-     /* if (currentUser != null && !currentUser.emailVerified) {
+      /* if (currentUser != null && !currentUser.emailVerified) {
         await auth.signOut();
         return "Verify your email before logging in";
       }*/

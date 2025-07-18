@@ -16,18 +16,18 @@ class _EditProfileState extends State<EditProfile> {
 
   Future<Map<String, dynamic>?> findUserProfile() async {
     try {
-      final doc = await FirebaseFirestore.instance.collection('Users').doc(email).get();
+      final doc =
+          await FirebaseFirestore.instance.collection('Users').doc(email).get();
       final data = doc.data()!;
-      final username=data['username'];
-      final bio=data['aboutme'];
-      _nameController.text=username;
-      _bioController.text=bio;
+      final username = data['username'];
+      final bio = data['aboutme'];
+      _nameController.text = username;
+      _bioController.text = bio;
     } catch (e) {
       return null;
     }
     return null;
   }
-  
 
   @override
   void dispose() {
@@ -49,7 +49,6 @@ class _EditProfileState extends State<EditProfile> {
         padding: const EdgeInsets.all(24.0),
         child: Column(
           children: [
-
             // Profile Picture
             GestureDetector(
               onTap: () {
@@ -90,58 +89,75 @@ class _EditProfileState extends State<EditProfile> {
               height: 56,
               width: double.infinity,
               child: ElevatedButton(
-                onPressed: () async{
+                onPressed: () async {
                   final nameT = _nameController.text;
-                  if(nameT.isNotEmpty){
-                    if(nameT.length<20){
-                      try{
-                       FirebaseFirestore.instance.collection('Users').doc(email).update({
-                         // Removes spaces and sets every letter to lowercase
-                        'username': nameT.split(" ").join(".").toLowerCase(),
-                        'aboutme': _bioController.text,
-                      });
-                      showDialog(context: context,
-                       builder: (context)=> AlertDialog(
-                        title: const Text("Profile updated"),
-                        content: Text("Your profile has been updated successfully"),
-                        actions: [
-                          TextButton(onPressed: ()=>Navigator.pushReplacementNamed(context, '/homescreen'), child: const Text("Back to home"))
-                        ],
-                       )
-                       );
-                      } on FirebaseAuthException catch(ex){
-                        showDialog(context: context,
-                         builder: (context)=>AlertDialog(
-                          title: const Text("Error"),
-                          content: Text("Something went wrong. Please try again later"),
-                          actions: [
-                            TextButton(onPressed: ()=>Navigator.pop(context), child: const Text("OK"))
-                          ],
-                         )
-                        );
+                  if (nameT.isNotEmpty) {
+                    if (nameT.length < 20) {
+                      try {
+                        FirebaseFirestore.instance
+                            .collection('Users')
+                            .doc(email)
+                            .update({
+                          // Removes spaces and sets every letter to lowercase
+                          'username': nameT.split(" ").join(".").toLowerCase(),
+                          'aboutme': _bioController.text,
+                        });
+                        showDialog(
+                            context: context,
+                            builder: (context) => AlertDialog(
+                                  title: const Text("Profile updated"),
+                                  content: Text(
+                                      "Your profile has been updated successfully"),
+                                  actions: [
+                                    TextButton(
+                                        onPressed: () =>
+                                            Navigator.pushReplacementNamed(
+                                                context, '/homescreen'),
+                                        child: const Text("Back to home"))
+                                  ],
+                                ));
+                      } on FirebaseAuthException catch (ex) {
+                        showDialog(
+                            context: context,
+                            builder: (context) => AlertDialog(
+                                  title: const Text("Error"),
+                                  content: Text(
+                                      "Something went wrong. Please try again later"),
+                                  actions: [
+                                    TextButton(
+                                        onPressed: () => Navigator.pop(context),
+                                        child: const Text("OK"))
+                                  ],
+                                ));
                       }
-                      }else{
-                      showDialog(context: context, 
-                      builder: (context)=>AlertDialog(
-                        title: const Text("Error"),
-                        content: Text("The username cannot exceed 20 characters."),
-                        actions: [
-                          TextButton(onPressed: ()=> Navigator.pop(context), child: const Text("OK"))
-                        ],
-                      )
-                      );
-                  }      
-                  }else{
-                    showDialog(context: context,
-                     builder: (context)=>AlertDialog(
-                      title: const Text("Error"),
-                      content: Text("A username is required to save the changes."),
-                      actions: [
-                        TextButton(onPressed: ()=> Navigator.pop(context), child: const Text("OK"))
-                      ],
-                     )
-                     );
-                  }    
+                    } else {
+                      showDialog(
+                          context: context,
+                          builder: (context) => AlertDialog(
+                                title: const Text("Error"),
+                                content: Text(
+                                    "The username cannot exceed 20 characters."),
+                                actions: [
+                                  TextButton(
+                                      onPressed: () => Navigator.pop(context),
+                                      child: const Text("OK"))
+                                ],
+                              ));
+                    }
+                  } else {
+                    showDialog(
+                        context: context,
+                        builder: (context) => AlertDialog(
+                              title: const Text("Error"),
+                              content: Text(
+                                  "A username is required to save the changes."),
+                              actions: [
+                                TextButton(
+                                    onPressed: () => Navigator.pop(context),
+                                    child: const Text("OK"))
+                              ],
+                            ));
+                  }
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: theme.colorScheme.primary,

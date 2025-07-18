@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 class CoinsPage extends StatelessWidget {
   final String coins;
+
   const CoinsPage(this.coins, {super.key});
 
   @override

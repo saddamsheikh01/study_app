@@ -36,10 +36,11 @@ class BottomNavBar extends StatelessWidget {
             }
           }
         }
-        
+
         return NavigationBarTheme(
           data: NavigationBarThemeData(
-            labelTextStyle: WidgetStateProperty.resolveWith<TextStyle>((Set<WidgetState> states) {
+            labelTextStyle: WidgetStateProperty.resolveWith<TextStyle>(
+                (Set<WidgetState> states) {
               if (states.contains(WidgetState.selected)) {
                 return TextStyle(
                   fontSize: 12,

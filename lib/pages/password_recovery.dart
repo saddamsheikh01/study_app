@@ -63,12 +63,12 @@ class PassRecovery extends StatelessWidget {
                                 context: context,
                                 builder: (context) => AlertDialog(
                                   title: const Text("Invalid email"),
-                                  content: const Text("Please use an institutional email ending in 'edu.it'"),
+                                  content: const Text(
+                                      "Please use an institutional email ending in 'edu.it'"),
                                   actions: [
                                     TextButton(
                                         onPressed: () => Navigator.pop(context),
-                                        child: const Text("OK")
-                                    ),
+                                        child: const Text("OK")),
                                   ],
                                 ),
                               );
@@ -79,18 +79,18 @@ class PassRecovery extends StatelessWidget {
                             }
                           } else {
                             showDialog(
-                              context: context,
-                              builder: (context) => AlertDialog(
-                                title: const Text("Error"),
-                                content: const Text("Enter an email before continuing"),
-                                actions: [
-                                  TextButton(
-                                      onPressed: () => Navigator.pop(context),
-                                      child: const Text("OK")
-                                  ),
-                                ],
-                              )
-                            );
+                                context: context,
+                                builder: (context) => AlertDialog(
+                                      title: const Text("Error"),
+                                      content: const Text(
+                                          "Enter an email before continuing"),
+                                      actions: [
+                                        TextButton(
+                                            onPressed: () =>
+                                                Navigator.pop(context),
+                                            child: const Text("OK")),
+                                      ],
+                                    ));
                           }
                         },
                         style: ElevatedButton.styleFrom(

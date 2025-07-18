@@ -23,7 +23,7 @@ class Tabs extends StatelessWidget {
         fontSize: 18,
       ),
       overlayColor: WidgetStateProperty.resolveWith<Color?>(
-            (Set<WidgetState> states) {
+        (Set<WidgetState> states) {
           return theme.colorScheme.secondaryFixedDim;
         },
       ),
