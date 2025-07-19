@@ -8,4 +8,5 @@ sealed class R {
   static const imageOnboarding2 = 'assets/onboarding2.png';
   static const imageOnboarding3 = 'assets/onboarding3.png';
   static const imageOnboarding4 = 'assets/onboarding4.png';
+  static const imageBanner1 = 'assets/banners/images.jpeg';
 }

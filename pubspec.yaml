@@ -44,6 +44,8 @@ dependencies:
   url_launcher: ^6.3.1
   is_first_run: ^1.0.0
   cloud_firestore: ^4.17.5
+  image_picker: ^1.1.0
+
 
 dev_dependencies:
   flutter_test:
@@ -74,6 +76,7 @@ flutter:
 
   assets:
     - assets/
+    - assets/banners/
 
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
